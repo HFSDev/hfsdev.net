@@ -1,0 +1,19 @@
+body {
+    width: 1024px;
+    background-color: darkgrey;
+}
+
+
+.navcolor {
+    background-color: darkgrey;
+}
+
+.personal_ad_bar {
+
+    border: 1px solid black;
+    height: 200px;
+}
+
+.content_width {
+    max-width: 1024px;
+}

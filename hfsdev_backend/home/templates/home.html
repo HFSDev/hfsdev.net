@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+Conteúdo da página.
+<img src="{% static "profile.jpg" %}" alt="Profile Picture" class="img-circle"/>
+{% endblock %}

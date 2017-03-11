@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+{% load static %}
+{% load bootstrap3 %}
+
+<html lang="en">
+    <head>
+
+        {% bootstrap_css %}
+        {% bootstrap_messages %}
+
+        <title>HFSDev.net - {% block title %}{% endblock %}</title>
+        <!-- The meta tag below provides means for letting the website know the available display area
+        provided by the user's browser.-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Hugo's personal website.">
+        <meta name="keywords" content="Python,React,C,C++,Java,.NET,Linux,Bash,Politics">
+        <meta name="author" content="Hugo Frederico Soares">
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="navcolor container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'home-views-home_page' %}">HFSDev</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#">LotoAnalyser</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <section>
+            <div class="container-fluid">
+                Texto aqui.
+            </div>
+        </section>
+        <main>
+        <div class="container personal_ad_bar">
+            <div class="row">
+                <div class="col-md-12">
+                    Texto Aqu </br>
+                dfsdof </br>
+
+                sdijfosdijf</br>
+
+                sdoosdihfosd</br>
+
+                sdoufhsodi</br>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                   {% block content %}{% endblock%}
+                </div>
+            </div>
+        </div>
+        </main>
+       {% bootstrap_javascript %}
+    </body>
+</html>
