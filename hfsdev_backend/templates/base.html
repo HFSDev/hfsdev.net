@@ -21,52 +21,105 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="navcolor container">
+            <nav class="navbar navbar-default navbar-fixed-top">                
+                <div class="container"> 
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="{% url 'home-views-home_page' %}">HFSDev</a>
+                        <a class="navbar-brand" href="{% url "home-views-home_page" %}">
+                            HFSDev
+                        </a>
                     </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#blog">Blog</a></li>
-                            <li><a href="#">LotoAnalyser</a></li>
-                        </ul>
+                    <div class="navbar-text navbar-right">
+                        <a class="navbar-link" href="#">BLOG</a>
+                        <a class="navbar-link">|</a>
+                        <a class="navbar-link" href="#">Loto Analyser</a>
                     </div>
                 </div>
             </nav>
         </header>
+        <div class="content_wrapper">
         <section>
-            <div class="container-fluid">
-                Texto aqui.
+            <div class="container personal_ad_bar">
+                Personal ad
             </div>
         </section>
         <main>
-        <div class="container personal_ad_bar">
-            <div class="row">
-                <div class="col-md-12">
-                    Texto Aqu </br>
-                dfsdof </br>
-
-                sdijfosdijf</br>
-
-                sdoosdihfosd</br>
-
-                sdoufhsodi</br>
-
-                </div>
+            <div class="container content_main">
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
+                content </br>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                   {% block content %}{% endblock%}
-                </div>
-            </div>
-        </div>
         </main>
+             <nav class="navbar navbar-default navbar-fixed-bottom">                
+                <div class="container foot_notice"> 
+                    Powered by</br>
+                    <img alt="Django" src="{% static "imgs/django-logo.png" %}">
+                    <img alt="PostgreSQL" src="{% static "imgs/postgresql-logo.png" %}">
+                    <img alt="React" src="{% static "imgs/react-logo.svg" %}">
+                </div>
+            </nav>
+       </div>
        {% bootstrap_javascript %}
     </body>
 </html>

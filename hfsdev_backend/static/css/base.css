@@ -1,19 +1,40 @@
-body {
-    width: 1024px;
-    background-color: darkgrey;
+.content_wrapper {
+    max-width: 1024px;
+    margin: auto;
+    margin-top: 60px;
 }
 
 
 .navcolor {
-    background-color: darkgrey;
 }
 
 .personal_ad_bar {
-
     border: 1px solid black;
-    height: 200px;
+    background-color: darkgrey;
+    height: 150px;
 }
 
-.content_width {
+.content_main {
+    border: 1px solid blue;
+    background-color: darkgrey;
+    margin-top: 10px;
+}
+
+.container {
     max-width: 1024px;
+    padding-right: 5px;
+}
+
+.navbar-right {
+    margin-right: 05px; 
+}
+
+.foot_notice {
+    text-align: center;
+    color: #777;
+    height: 64px;
+}
+
+.foot_notice img {
+    height: 32px;
 }
