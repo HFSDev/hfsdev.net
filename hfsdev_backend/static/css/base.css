@@ -1,22 +1,23 @@
+body {
+    background-color: #36425D;
+}
 .content_wrapper {
     max-width: 1024px;
     margin: auto;
     margin-top: 60px;
 }
 
-
-.navcolor {
-}
-
 .personal_ad_bar {
-    border: 1px solid black;
-    background-color: darkgrey;
+    border: 2px groove #122A60;
+    border-radius: 5px;
+    background-color: #4C5874;
     height: 150px;
 }
 
 .content_main {
-    border: 1px solid blue;
-    background-color: darkgrey;
+    border: 2px groove #122A60;
+    border-radius: 5px;
+    background-color: #4C5874;
     margin-top: 10px;
 }
 

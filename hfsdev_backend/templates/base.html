@@ -18,6 +18,7 @@
         <meta charset="utf-8">
 
         <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap_custom.css" %}">
     </head>
     <body>
         <header>
@@ -114,9 +115,18 @@
              <nav class="navbar navbar-default navbar-fixed-bottom">                
                 <div class="container foot_notice"> 
                     Powered by</br>
-                    <img alt="Django" src="{% static "imgs/django-logo.png" %}">
-                    <img alt="PostgreSQL" src="{% static "imgs/postgresql-logo.png" %}">
-                    <img alt="React" src="{% static "imgs/react-logo.svg" %}">
+                    <a href="https://www.python.org/">
+                        <img alt="Python" src="{% static "imgs/python-logo.png" %}">
+                    </a>
+                    <a href="https://www.djangoproject.com/">
+                        <img alt="Django" src="{% static "imgs/django-logo.png" %}">
+                    </a>
+                    <a href="https://www.postgresql.org/">
+                        <img alt="PostgreSQL" src="{% static "imgs/postgresql-logo.png" %}">
+                    </a>
+                    <a href="https://facebook.github.io/react/">
+                        <img alt="React" src="{% static "imgs/react-logo.png" %}">
+                    </a>
                 </div>
             </nav>
        </div>
