@@ -1,5 +1,6 @@
 body {
-    background-color: #36425D;
+    background-color: #475167;
+    background-color: white;
 }
 .content_wrapper {
     max-width: 1024px;
@@ -8,16 +9,42 @@ body {
 }
 
 .personal_ad_bar {
-    border: 2px groove #122A60;
-    border-radius: 5px;
-    background-color: #4C5874;
+    border-top-left-radius: 5px;
+    background-color: #96a0b5;
     height: 150px;
+    border-top-right-radius: 5px;
 }
 
+.personal_ad_bar .profile_img {
+    float: left;
+}
+.personal_ad_bar .profile_img img{
+    height: 128px;
+    border: solid aliceblue;
+    margin-top: 12px;
+}
+.personal_ad_bar .profile_info {
+    float:left;
+    margin-top: 15px;
+    padding-left: 5px;
+    border: none;
+    text-align: center;
+}
+
+.personal_ad_bar .profile_social_media {
+    margin-top: 46px;
+    margin-right: 10px;
+    float: right;
+}
+.personal_ad_bar .profile_social_media img {
+    height: 56px;
+    border: solid aliceblue 1px;
+}
+.personal_ad_bar .profile_social_media a:hover {
+    text-decoration: none;
+}
 .content_main {
-    border: 2px groove #122A60;
-    border-radius: 5px;
-    background-color: #4C5874;
+    background-color: #96a0b5;
     margin-top: 10px;
 }
 
@@ -34,6 +61,9 @@ body {
     text-align: center;
     color: #777;
     height: 64px;
+}
+.foot_notice a:hover {
+    text-decoration: none;
 }
 
 .foot_notice img {
