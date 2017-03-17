@@ -1,2 +1,5 @@
 #gitignore file - Excludes all packages and unwanted files from git.
+hfsdev_backend/hfsdev_backend/__pycache__/**
+*.pyc
+**/__pycache__/**
 site_env/

@@ -46,34 +46,19 @@
                         src={% static "imgs/Profile.jpg" %} />
                 </div>
                 <div class="page-header profile_info">
-                    <h1>HFSDev</br><small>programmer</small></h1>
+                    <h1>HFSDev</br><small>A programmer's repository of shitty ideas.</small></h1>
                 </div>
                 <div class="profile_social_media">
-                    <a href="#"><img class="img-circle" src="{% static "imgs/LinkedIn.png" %}"/></a>
-                    <a href="#"><img class="img-circle" src="{% static "imgs/Github.png" %}"/></a>
-                    <a href="#"><img class="img-circle" src="{% static "imgs/Twitter.png" %}"/></a>
-                    <a href="#"><img class="img-circle" src="{% static "imgs/Facebook.png" %}"/></a>
+                    <a href="https://www.linkedin.com/in/hugo-frederico-soares-3a725433/"><img class="img-circle" src="{% static "imgs/LinkedIn.png" %}"/></a>
+                    <a href="https://github.com/hfsdev"><img class="img-circle" src="{% static "imgs/Github.png" %}"/></a>
+                    <a href="https://twitter.com/hfsdev"><img class="img-circle" src="{% static "imgs/Twitter.png" %}"/></a>
+                    <a href="https://www.facebook.com/hugofredericosoares"><img class="img-circle" src="{% static "imgs/Facebook.png" %}"/></a>
                 </div>
             </div>
         </section>
         <main>
             <div class="container content_main">
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
-                content </br>
+                {% block content %} {% endblock %}
             </div>
         </main>
              <nav class="navbar navbar-default navbar-fixed-bottom">                

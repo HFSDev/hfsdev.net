@@ -1,5 +1,4 @@
 body {
-    background-color: #475167;
     background-color: white;
 }
 .content_wrapper {
@@ -11,6 +10,7 @@ body {
 .personal_ad_bar {
     border-top-left-radius: 5px;
     background-color: #96a0b5;
+    background-color: #eee;
     height: 150px;
     border-top-right-radius: 5px;
 }
@@ -25,10 +25,10 @@ body {
 }
 .personal_ad_bar .profile_info {
     float:left;
-    margin-top: 15px;
-    padding-left: 5px;
+    margin-top: 20px;
+    padding-left: 20px;
     border: none;
-    text-align: center;
+    text-align: left;
 }
 
 .personal_ad_bar .profile_social_media {
@@ -45,7 +45,11 @@ body {
 }
 .content_main {
     background-color: #96a0b5;
+    background-color: #eee;
     margin-top: 10px;
+    padding-right: 40px;
+    padding-left: 20px;
+    padding-bottom: 100px;
 }
 
 .container {
@@ -69,3 +73,5 @@ body {
 .foot_notice img {
     height: 32px;
 }
+p {
+    text-indent: 25px;
