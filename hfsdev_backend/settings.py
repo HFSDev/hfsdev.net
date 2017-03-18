@@ -132,3 +132,4 @@ STATICFILES_DIRS = (
 )
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+print("Directoy for static files has been set to: '%s'." % STATICFILES_DIRS)
