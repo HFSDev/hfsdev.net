@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Lottery{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>
+        Lottery        
+    </h1>
+</div>  
+<p>
+It all started in my work. My friend said: "we could bet on the lotteries...". And started talking about how he and his previous work friends used to bet and how they had got 13 numbers out of 15 right and how close they were to hitting the jackpot. So, we were sold.
+</p>
+<p>
+But, as computer scientists, we couldn't just choose the numbers randomly... What if we chose a past winner combination... What is the most probable combination next game... and so we started discussing how to choose our numbers and I got the idea to make this tool.
+</p>
+<p>
+It is basically a statistic tool to get number distributions and we use it to learn something from past games. See for yourself. Checkout the number combination given too. It calculates a 15 to 17 number combination sequence based on the probability of a number taking in consideration the times it has already been raffled.
+</p>
+
+{% endblock %}
