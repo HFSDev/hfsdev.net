@@ -3,5 +3,6 @@ import lotteries.views
 
 urlpatterns = [
     url(r'^$', lotteries.views.index, name="lotteries-views-index"),
-    url(r'loader/$', lotteries.views.load_data, name="lotteries-views-load_data"),
+    url(r'load_database/$', 
+    	lotteries.views.load_data, name="lotteries-views-load_data"),
 ]

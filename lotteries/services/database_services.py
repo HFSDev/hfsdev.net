@@ -3,20 +3,21 @@ from datetime import date
 from time import strptime
 from decimal import Decimal
 
-def load_data(file):
+def load_data_from_file(file):
     """
     Deletes all draws and its numbers for reloading the database.
     This method consumes a lot of database execution power.
     file - The file (in memory) to load database from.
     """
     # Parse the file creating objects for loading database.
-    LotoLottery.objects.all().delete()
+    LotoDraw.objects.all().delete()
     ldp = LotoDrawParser()
-    ldp.draw_from_line(file)
+    ldp.draw_from_file(file)
 
 class LotoDrawParser:
     """
-        Knows how to parse a file with lotteries results downloaded from caixa site.
+        Knows how to parse a file with lotteries results downloaded from caixa 
+        site.
     """
     IDX_DRAW_ID = 0
     IDX_DRAW_DATE = 1
@@ -51,7 +52,8 @@ class LotoDrawParser:
             if line[0] != ',':
                 loto_draw = LotoDraw()
 
-                loto_draw.draw_number = int(word_list[LotoDrawParser.IDX_DRAW_ID])
+                loto_draw.draw_number = \
+                        int(word_list[LotoDrawParser.IDX_DRAW_ID])
                 dts = strptime(word_list[LotoDrawParser.IDX_DRAW_DATE],
                                        '%d/%m/%Y')
                 loto_draw.date = date(dts.tm_year, dts.tm_mon, dts.tm_mday)
@@ -70,14 +72,18 @@ class LotoDrawParser:
                 loto_draw.number_13 = int(word_list[IDX_DRAW_NUMBER_12])
                 loto_draw.number_14 = int(word_list[IDX_DRAW_NUMBER_13])
                 loto_draw.number_15 = int(word_list[IDX_DRAW_NUMBER_14])
-                loto_draw.total_collected = Decimal(word_list[IDX_TOTAL_COLLECTED])
+                loto_draw.total_collected = \
+                        Decimal(word_list[IDX_TOTAL_COLLECTED])
                 loto_draw.total_winners = int(word_list[IDX_TOTAL_WINNERS])
 
                 if loto_draw.total_winners > 0:
-                    loto_draw.prize_per_winner = Decimal(word_list[IDX_PRIZE_PER_WINNER])
+                    loto_draw.prize_per_winner = \
+                        Decimal(word_list[IDX_PRIZE_PER_WINNER])
                 else:
                     loto_draw.prize_per_winner = 0
-                loto_draw.prize_for_next_draw = Decimal(word_list[IDX_PRIZE_FOR_NEXT_DRAW])
+
+                loto_draw.prize_for_next_draw = \
+                        Decimal(word_list[IDX_PRIZE_FOR_NEXT_DRAW])
 
                 ab_state = word_list[IDX_STATE]
                 city_name = word_list[IDX_CITY]
@@ -94,7 +100,7 @@ class LotoDrawParser:
             elif draw and draw.winning_cities:
                 ab_state = word_list[IDX_STATE]
                 city_name = word_list[LotoDrawParser.IDX_CITY]
-                city = City.objects.get(name=city_name)
+                city = City.oebjects.get(name=city_name)
                 if not city:
                     city = City()
                     city.name = city_name

@@ -25,7 +25,7 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 
-print("Running on Django version [%s].", str(django.VERSION))
+print("Running on Django version %s." % str(django.VERSION))
 
 
 DJANGO_ENVIRONMENT = os.environ.get('DJANGO_ENVIRONMENT')
@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'home',
+    'states',
+    'lotteries',
 ]
 
 MIDDLEWARE = [
@@ -87,12 +89,21 @@ WSGI_APPLICATION = 'hfsdev_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if PROD_ENV:
+    DATABASES = {
+        'default': db_from_env
     }
-}
+    #DATABASES['default'].update(db_from_env)
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'hfsdev',
+            'USER': 'hfsdev_user',
+            'PASSWORD': '123456789',
+            'HOST': 'localhost',
+        }
+    }
 
 
 # Password validation
