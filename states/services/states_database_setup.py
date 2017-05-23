@@ -1,7 +1,7 @@
 from states.models import State
 from states.models import Region
 
-def setup_database:
+def setup_database():
     """
     Sets the states app database ready. It creates all states and regions, but
     leaves cities blank.
