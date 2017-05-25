@@ -148,6 +148,12 @@ def setup_database():
     state.save()
 
     state = State()
+    state.name = "Distrito Federal  ".strip()
+    state.abbreviation = "DF"
+    state.region = regionCO
+    state.save()
+
+    state = State()
     state.name = "São Paulo         ".strip()
     state.abbreviation = "SP"
     state.region = regionSE

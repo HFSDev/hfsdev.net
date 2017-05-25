@@ -2,7 +2,10 @@ from lotteries.models import LotoDraw
 from datetime import date
 from time import strptime
 from decimal import Decimal
-from states.services import states_database_setup
+from states.services.states_database_setup import setup_database
+from states.models import City
+from states.models import State
+from states.models import Region
 import pdb
 
 def load_data_from_file(file):
@@ -12,7 +15,7 @@ def load_data_from_file(file):
     file - The file (in memory) to load database from.
     """
     
-    states_database_setup()
+    setup_database()
         # Parse the file creating objects for loading database.
     LotoDraw.objects.all().delete()
     ldp = LotoDrawParser()
@@ -64,7 +67,7 @@ class LotoDrawParser:
                 loto_draw.number_1  = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_1])
                 loto_draw.number_2  = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_2])
                 loto_draw.number_3  = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_3])
-                loto_draw.number_4  = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_3])
+                loto_draw.number_4  = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_4])
                 loto_draw.number_5  = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_5])
                 loto_draw.number_6  = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_6])
                 loto_draw.number_7  = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_7])
@@ -73,9 +76,9 @@ class LotoDrawParser:
                 loto_draw.number_10 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_10])
                 loto_draw.number_11 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_11])
                 loto_draw.number_12 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_12])
-                loto_draw.number_13 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_12])
-                loto_draw.number_14 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_13])
-                loto_draw.number_15 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_14])
+                loto_draw.number_13 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_13])
+                loto_draw.number_14 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_14])
+                loto_draw.number_15 = int(word_list[LotoDrawParser.IDX_DRAW_NUMBER_15])
                 loto_draw.total_collected = \
                         Decimal(word_list[LotoDrawParser.IDX_TOTAL_COLLECTED])
                 loto_draw.total_winners = int(word_list[LotoDrawParser.IDX_TOTAL_WINNERS])
@@ -88,34 +91,33 @@ class LotoDrawParser:
 
                 loto_draw.prize_for_next_draw = \
                         Decimal(word_list[LotoDrawParser.IDX_PRIZE_FOR_NEXT_DRAW])
+                loto_draw.save()
 
                 ab_state = word_list[LotoDrawParser.IDX_STATE].strip()
                 city_name = word_list[LotoDrawParser.IDX_CITY].strip()
                 if city_name:
-                    city = City.objects.get(name=city_name)
-                    if not city:
-                        city = City()
-                        city.name = city_name
-                        city.state = State.objects.get(abbreviation=ab_state)
-                        city.save()
+                    city = self.get_city_by_name(city_name, ab_state)
                     loto_draw.winning_cities.add(city)
-                #In old contests, CEF didnt save winner's cities, so for these
-                #we name the city as 'cidade_estado + state'
-                elif city_name == '':
-                    city = City()
-                    city.state = State.objects.get(abbreviation=ab_state)
-                    city.name = "cidade_" + city.state.abbreviation
-                    city.save()
-                #saves the draw
-                loto_draw.save()
+                    loto_draw.save()
+                
             elif loto_draw and loto_draw.winning_cities:
-                ab_state = word_list[IDX_STATE]
-                city_name = word_list[LotoDrawParser.IDX_CITY]
-                city = City.oebjects.get(name=city_name)
-                if not city:
-                    city = City()
-                    city.name = city_name
-                    city.state = State.objects.get(abbreviation=ab_state)
-                    city.save()
+                ab_state = word_list[LotoDrawParser.IDX_STATE].strip()
+                city_name = word_list[LotoDrawParser.IDX_CITY].strip()
+                city = self.get_city_by_name(city_name, ab_state)
                 loto_draw.winning_cities.add(city)
                 loto_draw.save()
+    
+    def get_city_by_name(self, city_name, state_abbreviation):
+        city = None
+
+        if city_name == '':
+            city_name = "cidade_" + state_abbreviation
+        try:
+            city = City.objects.get(name=city_name)
+        except City.DoesNotExist:
+            city = City()
+            city.name = city_name
+            city.state = State.objects.get(abbreviation=state_abbreviation)
+            city.save()
+        return city
+
