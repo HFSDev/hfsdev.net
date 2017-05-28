@@ -1,7 +1,21 @@
 from django.db import models
 from states.models import City
 
+class WinningCity(models.Model):
+    '''
+    This entity is needed to store cities when they win in a duplicating manner
+    If the same city wins a single contest twice, there's no way to tell it if 
+    we don't differentiate the objects.
+    '''
+    city = models.ForeignKey(City)
+    # a differentiator integer just to set this winning city a part.
+    differentiator = models.PositiveSmallIntegerField()
+
 class LotoDraw(models.Model):
+    '''
+    Entity that maps a real draw from the Lotofacil game. Whoever gets 15 
+    numbers right out of 25, wins the pot.
+    '''
     draw_number = models.PositiveIntegerField(unique=True)
     date = models.DateField()
     number_1 = models.PositiveSmallIntegerField()
@@ -21,7 +35,7 @@ class LotoDraw(models.Model):
     number_15 = models.PositiveSmallIntegerField()
     total_collected = models.DecimalField(decimal_places=2, max_digits=19)
     total_winners = models.PositiveIntegerField()
-    winning_cities = models.ManyToManyField (City)
+    winning_cities = models.ManyToManyField (WinningCity)
     prize_per_winner = models.DecimalField(decimal_places=2, max_digits=19)
     prize_for_next_draw = models.DecimalField(decimal_places=2, max_digits=19)
 

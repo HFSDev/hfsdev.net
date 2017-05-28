@@ -1,4 +1,5 @@
 from lotteries.models import LotoDraw
+from lotteries.models import WinningCity
 from datetime import date
 from time import strptime
 from decimal import Decimal
@@ -93,19 +94,37 @@ class LotoDrawParser:
                         Decimal(word_list[LotoDrawParser.IDX_PRIZE_FOR_NEXT_DRAW])
                 loto_draw.save()
 
-                ab_state = word_list[LotoDrawParser.IDX_STATE].strip()
-                city_name = word_list[LotoDrawParser.IDX_CITY].strip()
-                if city_name:
+                if loto_draw.total_winners > 0:
+                    ab_state = word_list[LotoDrawParser.IDX_STATE].strip()
+                    city_name = word_list[LotoDrawParser.IDX_CITY].strip()
                     city = self.get_city_by_name(city_name, ab_state)
-                    loto_draw.winning_cities.add(city)
+                    win_city = WinningCity()
+                    win_city.city = city
+                    win_city.differentiator = 1
+                    win_city.save()
+                    loto_draw.winning_cities.add(win_city)
                     loto_draw.save()
-                
+                    
             elif loto_draw and loto_draw.winning_cities:
                 ab_state = word_list[LotoDrawParser.IDX_STATE].strip()
                 city_name = word_list[LotoDrawParser.IDX_CITY].strip()
                 city = self.get_city_by_name(city_name, ab_state)
-                loto_draw.winning_cities.add(city)
-                loto_draw.save()
+
+                try:
+                    win_city = loto_draw.winning_cities.\
+                            get(city__name=city.name)
+                    sec_win_city = WinningCity()
+                    sec_win_city.city = city
+                    sec_win_city.differentiator = win_city.differentiator + 1
+                    sec_win_city.save()
+                    loto_draw.winning_cities.add(sec_win_city)
+                except:
+                    win_city = WinningCity()
+                    win_city.city = city
+                    win_city.differentiator = 1
+                    win_city.save()
+                    loto_draw.winning_cities.add(win_city)
+                    loto_draw.save()
     
     def get_city_by_name(self, city_name, state_abbreviation):
         city = None

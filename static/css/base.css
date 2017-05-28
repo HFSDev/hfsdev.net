@@ -55,6 +55,10 @@ body {
     border: solid aliceblue;
 }
 
+.content_main .plain_img {
+    border: none;
+}
+
 .container {
     max-width: 1024px;
     padding-right: 5px;
