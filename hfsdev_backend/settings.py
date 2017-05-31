@@ -36,7 +36,7 @@ DEBUG = not PROD_ENV
 print("Running in " + ("PRODUCTION" if PROD_ENV else "DEVELOPMENT") + " enviroment.")
 print("Debugging has been set to " + str(DEBUG) + ".")
 
-ALLOWED_HOSTS = ['www.hfsdev.net', 'localhost', 'loto-analyser.herokuapp.com']
+ALLOWED_HOSTS = ['www.hfsdev.net', 'localhost', 'hfsdev-net.herokuapp.com']
 
 
 # Application definition
@@ -149,3 +149,9 @@ STATICFILES_DIRS = (
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 print("Directoy for static files has been set to: '%s'." % STATICFILES_DIRS)
+
+print("Securing website, setting HTTPS redirect.")
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_HSTS_SECONDS = 31536000 
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True

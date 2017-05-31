@@ -3,4 +3,4 @@ hfsdev_backend/hfsdev_backend/__pycache__/**
 *.pyc
 **/__pycache__/**
 site_env/
-
+*.sublime-workspace
