@@ -36,8 +36,17 @@ DEBUG = not PROD_ENV
 print("Running in " + ("PRODUCTION" if PROD_ENV else "DEVELOPMENT") + " enviroment.")
 print("Debugging has been set to " + str(DEBUG) + ".")
 
-ALLOWED_HOSTS = ['www.hfsdev.net', 'localhost', 'hfsdev-net.herokuapp.com']
-
+if PROD_ENV:
+    ALLOWED_HOSTS = [
+        'www.hfsdev.net', 
+        'hfsdev.net', 
+        "www.hfsdev-net.herokuapp.com",
+        'hfsdev-net.herokuapp.com'
+    ]
+else:
+    ALLOWED_HOSTS = [
+        'localhost'
+    ]
 
 # Application definition
 
@@ -64,6 +73,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if PROD_ENV:
+    PREPEND_WWW = True
 
 ROOT_URLCONF = 'hfsdev_backend.urls'
 
@@ -150,8 +162,11 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 print("Directoy for static files has been set to: '%s'." % STATICFILES_DIRS)
 
-print("Securing website, setting HTTPS redirect.")
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_HSTS_SECONDS = 31536000 
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+if PROD_ENV:
+    print("Securing website, setting HTTPS redirect.")
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_HSTS_SECONDS = 31536000 
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+else:
+    print("Running in development server, not setting HTTPS redirect.")
