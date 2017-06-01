@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'home',
     'states',
     'lotteries',
+    'distributions',
 ]
 
 MIDDLEWARE = [

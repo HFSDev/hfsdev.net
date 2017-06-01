@@ -7,6 +7,7 @@ from states.services.states_database_setup import setup_database
 from states.models import City
 from states.models import State
 from states.models import Region
+from django.db.models import Max
 import pdb
 
 def load_data_from_file(file):
@@ -110,15 +111,16 @@ class LotoDrawParser:
                 city_name = word_list[LotoDrawParser.IDX_CITY].strip()
                 city = self.get_city_by_name(city_name, ab_state)
 
-                try:
-                    win_city = loto_draw.winning_cities.\
-                            get(city__name=city.name)
+                diff_factor = (loto_draw.winning_cities
+                        .filter(city__name=city.name)
+                        .aggregate(Max('differentiator'))['differentiator__max'])
+                if diff_factor:
                     sec_win_city = WinningCity()
                     sec_win_city.city = city
-                    sec_win_city.differentiator = win_city.differentiator + 1
+                    sec_win_city.differentiator = diff_factor + 1
                     sec_win_city.save()
                     loto_draw.winning_cities.add(sec_win_city)
-                except:
+                else:
                     win_city = WinningCity()
                     win_city.city = city
                     win_city.differentiator = 1
